@@ -1,0 +1,39 @@
+.content-container{
+    display: flex;
+  }
+  
+  .image-container{
+    background-color: white;
+    position: absolute;
+    top: 150px;
+    left: 200px;
+    width: 30%;
+    height: 70vh;
+    border-radius: 20px;
+  }
+  
+  .Info-container{
+    position: absolute;
+    top: 150px;
+    left: 700px;
+    width: 30%;
+    height: 70vh;
+    border-radius: 20px;
+  }
+  
+  .data-container-1{
+    position: absolute;
+    left: 150px;
+    background-color: white;
+    border-radius: 20px;
+    height: 170px;
+  }
+  
+  .data-container-2{
+    position: absolute;
+    top: 200px;
+    left: 150px;
+    background-color: white;
+    border-radius: 20px;
+    height: 300px;
+  }

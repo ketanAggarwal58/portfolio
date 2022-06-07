@@ -1,0 +1,56 @@
+.NavBar{
+    color: white;
+    display: flex;
+  }
+  
+  .logo{
+    Position: relative;
+    top: 30px;
+    left: 50px;
+    font-family: 'Grand Hotel';
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .Navbar-items{
+    padding-top: 30px;
+  }
+
+  .nav-link:link{
+    text-decoration: none;
+    color: white;
+  }
+
+  .nav-link:active{
+    text-decoration: none;
+    color: white;
+  }
+
+  .nav-link:hover{
+    text-decoration: none;
+    color: white;
+  }
+
+  .nav-link:visited{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .Navbar-items span{
+    padding-top: 30px;
+    padding-left: 40px;
+    position: relative;
+    left: 130px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .Navbar-items span:hover{
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    font-style: italic;
+  }
+  
