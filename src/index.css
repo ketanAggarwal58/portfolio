@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Grand Hotel';
+  src: local('Grand Hotel'), url(../assets/font/Grand_Hotel/GrandHotel-Regular.ttf) format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
