@@ -5,8 +5,10 @@ function Home(){
     return(
         <>
           <div className='content-container'>
-            <span>Hi, Welcome to the Official Portfolio of</span>
-            <span>The Ketan Aggarwal!</span>
+            <div className='welcome-text'>
+              <span>Hi, Welcome to the Official Portfolio of</span>
+              <span>The Ketan Aggarwal!</span>
+            </div>
           </div>
         </>
     );

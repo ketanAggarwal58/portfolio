@@ -1,11 +1,14 @@
-.content-container{
+.welcome-text{
   color: white;
   position: absolute;
   top: 43%;
   background: none;
+  animation-name: slide-down-desktop; /* Actual Animation call */
+  animation-duration: 2s;
+  transition: ease-in-out;
 }
 
-.content-container span{
+.welcome-text span{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,4 +17,28 @@
   font-style: italic;
   font-family: 'Montserrat', sans-serif;
   background: transparent;
+  animation-name: slide-down-desktop;
+  animation-duration: 3s;
+  transition: ease-in-out;
 }
+
+@keyframes slide-down-desktop{
+
+  0%   {
+    top: -20%;
+  }
+  25%  {
+    display: none;
+  }
+  50%  {
+    display: none;
+  }
+  100% {
+    display: flex;
+    top: 43%;
+  }
+}
+
+@keyframes tablet{}
+
+@keyframes mobile{}
