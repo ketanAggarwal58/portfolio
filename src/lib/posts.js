@@ -1,0 +1,43 @@
+export const posts = [
+  {
+    slug: "deep-sea-fishing-miami-2018",
+    title: "Explore the Sea world with Deep Sea Fishing Miami 2018",
+    excerpt:
+      "Catching your rationale a however people, if of was best of doesn’t be should in and laminated good sufficiently...",
+    cover: "/images/featured.jpg",
+    date: "2022-11-22",
+    readTime: "03 min read",
+    author: "Ketan Aggarwal",
+    category: "Tech",
+  },
+  {
+    slug: "building-a-minimal-dashboard",
+    title: "Building a Minimal Analytics Dashboard",
+    excerpt: "A crisp walkthrough on planning, components, and iterations for a clear dashboard.",
+    cover: "/images/post-2.jpg",
+    date: "2023-02-15",
+    readTime: "05 min read",
+    author: "Alisha Stone",
+    category: "Finance",
+  },
+  {
+    slug: "parenting-in-small-moments",
+    title: "Parenting in Small Moments",
+    excerpt: "Micro-interactions matter more than grand gestures. Here’s a reflection.",
+    cover: "/images/post-3.jpg",
+    date: "2023-04-19",
+    readTime: "04 min read",
+    author: "Ketan Aggarwal",
+    category: "Life",
+  },
+  {
+    slug: "parenting-in-small-moments",
+    title: "Parenting in Small Moments",
+    excerpt: "Micro-interactions matter more than grand gestures. Here’s a reflection.",
+    cover: "/images/post-3.jpg",
+    date: "2023-04-19",
+    readTime: "04 min read",
+    author: "Ketan Aggarwal",
+    category: "Leadership",
+  },
+];
