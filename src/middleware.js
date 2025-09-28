@@ -1,23 +1,21 @@
 import { NextResponse } from "next/server";
 
-export function middleware(req) {
-  const { pathname } = req.nextUrl;
+export function middleware(request) {
+  // const session = request.cookies.get('session')?.value;
+  // const { pathname, search } = request.nextUrl;
 
-  // Only handle /admin paths
-  if (!pathname.startsWith("/admin")) return NextResponse.next();
+  // const isAuth = pathname === '/admin';          // login at '/'
+  // const isProtected = pathname === '/admin' || pathname.startsWith('/admin/');
 
-  // Allow the login page and its static assets
-  if (pathname === "/admin/login") return NextResponse.next();
-  if (pathname.startsWith("/_next") || pathname.startsWith("/admin/_next")) return NextResponse.next();
+  // if (isProtected && !session) {
+  //   const url = new URL('/admin', request.url);
+  //   url.searchParams.set('callbackUrl', pathname + search);
+  //   return NextResponse.redirect(url);
+  // }
 
-  // Read cookie
-  const authed = req.cookies.get("admin-auth")?.value === "authenticated";
-  if (!authed) {
-    const url = req.nextUrl.clone();
-    url.pathname = "/admin/login";
-    url.search = ""; // avoid loops with search params
-    return NextResponse.redirect(url);
-  }
+  // if (isAuth && session) {
+  //   return NextResponse.redirect(new URL('/admin', request.url));
+  // }
 
   return NextResponse.next();
 }

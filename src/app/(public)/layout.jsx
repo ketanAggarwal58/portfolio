@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 import Link from "next/link";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
   description: "Personal blog built with Next.js App Router and Tailwind.",
 };
 
-export default function RootLayout({ children }) {
+export default function PublicLayout({ children }) {
   return (
     <html lang="en">
       <body>
