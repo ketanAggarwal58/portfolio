@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/api/api"
 
-export default function PostsAdmin() {
+export default async function PostsAdmin() {
+  const posts = await getAllPosts({ limit: 10 });
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">

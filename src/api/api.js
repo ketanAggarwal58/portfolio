@@ -35,7 +35,8 @@ export async function getAllPosts() {
   if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
   const data = await res.json();
   // The API may return an array or a paginated object; normalize to array
-  const list = Array.isArray(data) ? data : data.items || [];
+  let blogs = data.blogs;
+  const list = Array.isArray(blogs) ? blogs : blogs.items || [];
   return list.map(mapPost);
 }
 

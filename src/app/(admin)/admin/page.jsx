@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { posts } from "@/lib/posts";
+import { getAllPosts } from "@/api/api";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const posts = await getAllPosts();
   const publishedPosts = posts.filter(p => p.status !== "DRAFT");
   const draftPosts = posts.filter(p => p.status === "DRAFT");
 

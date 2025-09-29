@@ -108,9 +108,10 @@ export default function NewPost() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select category...</option>
-                <option value="Wild Nature">Wild Nature</option>
-                <option value="Design">Design</option>
+                <option value="Wild Nature">Leadership</option>
+                <option value="Design">Finances</option>
                 <option value="Life">Life</option>
+                <option value="Life">Business</option>
                 <option value="Technology">Technology</option>
               </select>
             </div>

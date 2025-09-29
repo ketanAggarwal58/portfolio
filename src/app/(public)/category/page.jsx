@@ -1,7 +1,7 @@
 import { posts } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
 
-export default function CategoryPage() {
+export default async function CategoryPage() {
   const categories = Array.from(new Set(posts.map((p) => p.category)));
   return (
     <section className="container mt-10 ml-20">
