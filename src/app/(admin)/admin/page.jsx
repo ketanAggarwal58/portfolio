@@ -45,7 +45,7 @@ export default async function AdminDashboard() {
               <div>
                 <h3 className="font-medium text-gray-900">{post.title}</h3>
                 <p className="text-sm text-gray-500">
-                  {new Date(post.date).toLocaleDateString()} • {post.category}
+                  {new Date(post.date).toLocaleDateString()} • {post.category} • {post.status ? "Draft" : "Published"}
                 </p>
               </div>
               <div className="flex space-x-2">

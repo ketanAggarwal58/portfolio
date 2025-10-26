@@ -1,44 +1,90 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import MarkdownEditor from "@/components/MarkdownEditor";
 
 export default function NewPost() {
   const router = useRouter();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
     excerpt: "",
-    content: "",
+    content: "",     // Markdown source of the post
     category: "",
-    tags: "",
+    tags: "",        // comma-separated
     cover: "",
-    status: "DRAFT",
+    status: "1", // or PUBLISHED
+    author: "Ketan Aggarwal"
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    const slugify = (s) =>
+      s
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
-      // Auto-generate slug from title
-      ...(name === "title" && { slug: value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') })
+      ...(name === "title" && { slug: slugify(value) }),
     }));
   };
 
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Here you'd save to your data source
-    console.log("Saving post:", formData);
-    
-    // For now, just redirect back
-    router.push("/admin/posts");
-  };
+    setSubmitting(true);
+    setError("");
+
+    try {
+      // Normalize/transform form data to API payload
+      const payload = {
+        title: formData.title.trim(),
+        slug: formData.slug.trim(),
+        excerpt: formData.excerpt.trim(),
+        body: formData.content,
+        category: formData.category || null,
+        tags:
+          formData.tags
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean) || [],
+        cover: formData.cover || null,
+        status: formData.status || "DRAFT",
+      };
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/blogs/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || `Save failed with ${res.status}`);
+      }
+
+      // Optional: parse created object to get its slug/id
+      // const created = await res.json();
+
+      // Redirect after success
+      // router.push("/admin/posts");
+    } catch (err) {
+      setError(err.message || "Something went wrong while saving.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-900">New Post</h1>
-        <button 
+        <button
+          type="button"
           onClick={() => router.back()}
           className="text-gray-600 hover:text-gray-700"
         >
@@ -50,9 +96,7 @@ export default function NewPost() {
         <div className="bg-white shadow rounded-lg p-6 space-y-6">
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Title
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
             <input
               type="text"
               name="title"
@@ -66,9 +110,7 @@ export default function NewPost() {
 
           {/* Slug */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Slug
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Slug</label>
             <input
               type="text"
               name="slug"
@@ -82,9 +124,7 @@ export default function NewPost() {
 
           {/* Excerpt */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Excerpt
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt</label>
             <textarea
               name="excerpt"
               value={formData.excerpt}
@@ -98,9 +138,7 @@ export default function NewPost() {
           {/* Category & Tags */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Category
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
               <select
                 name="category"
                 value={formData.category}
@@ -108,17 +146,15 @@ export default function NewPost() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select category...</option>
-                <option value="Wild Nature">Leadership</option>
-                <option value="Design">Finances</option>
+                <option value="Leadership">Leadership</option>
+                <option value="Finances">Finances</option>
                 <option value="Life">Life</option>
-                <option value="Life">Business</option>
+                <option value="Business">Business</option>
                 <option value="Technology">Technology</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Tags
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Tags</label>
               <input
                 type="text"
                 name="tags"
@@ -132,9 +168,7 @@ export default function NewPost() {
 
           {/* Cover Image */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Cover Image URL
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Cover Image URL</label>
             <input
               type="url"
               name="cover"
@@ -146,28 +180,15 @@ export default function NewPost() {
           </div>
 
           {/* Content Editor */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Content (Markdown)
-            </label>
-            <textarea
-              name="content"
-              value={formData.content}
-              onChange={handleChange}
-              rows={20}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
-              placeholder="Write your post content in Markdown..."
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              Supports Markdown formatting. Use **bold**, *italic*, # headers, etc.
-            </p>
-          </div>
+          <MarkdownEditor
+            value={formData.content}
+            onChange={(next) => setFormData((s) => ({ ...s, content: next }))}
+            onInsertImage={async () => prompt("Paste image URL")}
+          />
 
           {/* Status */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Status
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
             <select
               name="status"
               value={formData.status}
@@ -178,6 +199,8 @@ export default function NewPost() {
               <option value="PUBLISHED">Published</option>
             </select>
           </div>
+
+          {error && <p className="text-sm text-red-600">{error}</p>}
         </div>
 
         {/* Actions */}
@@ -186,14 +209,16 @@ export default function NewPost() {
             type="button"
             onClick={() => router.back()}
             className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+            disabled={submitting}
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            disabled={submitting}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-60"
           >
-            Save Post
+            {submitting ? "Saving..." : "Save Post"}
           </button>
         </div>
       </form>

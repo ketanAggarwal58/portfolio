@@ -3,7 +3,7 @@ import { Chip } from "./Chip";
 
 export default function FeaturedPost({ post }) {
   return (
-    <section className="container mt-6 ml-20">
+    <section className="container px-4 mx-auto mt-6">
       <div className="rounded-xl bg-white p-3 shadow-card md:p-5">
         <div className="overflow-hidden rounded-lg">
           <img src={post.cover} alt={post.title} className="max-h-[520px] w-full object-cover" />

@@ -7,14 +7,14 @@ export default async function Hero() {
   const home = await getHomeDetails();
 
   return (
-    <section className="container mt-10 ml-20 text-center">
-      <div className="mx-auto inline-block rounded-full bg-white p-1 shadow-card">
+    <section className="container mx-auto text-center">
+      <div className="mx-auto mt-5 inline-block rounded-full bg-white p-1 shadow-card">
         <Avatar />
       </div>
       <h1 className="mt-5 font-display text-4xl md:text-5xl tracking-tight text-brand">
       {home.displayName}
       </h1>
-      <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-600">
+      <p className="mx-auto mt-3 text-justify px-4 py-0 max-w-2xl text-sm text-slate-600">
         {home.description}
       </p>
       <div className="mt-4 flex items-center justify-center gap-4 text-brand.subtle text-sm">

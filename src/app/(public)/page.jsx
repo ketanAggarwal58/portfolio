@@ -24,12 +24,12 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <section className="container mt-10">
-        <h2 className="text-2xl ml-20 font-bold">Featured post</h2>
+      <section className="container px-4 mx-auto mt-10">
+        <h2 className="text-2xl font-bold">Featured post</h2>
       </section>
       <FeaturedPost post={featured} />
       {rest.length > 0 && (
-        <section className="container mt-8 ml-20 grid gap-6 md:grid-cols-2">
+        <section className="container mx-auto mt-8 px-4 grid gap-6 md:grid-cols-2">
           {rest.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
