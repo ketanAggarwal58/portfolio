@@ -36,3 +36,15 @@ a:hover{
   cursor: pointer;
   text-decoration: underline;
 }
+
+/* code {
+  padding: 10px;
+  border: 1px solid black;
+  display: grid;                         
+  color: grey;            
+  text-align: left;                      
+  word-break: normal;                    
+  font-size: 13px;                       
+  line-height: 20px;                     
+  hyphens: none;   
+} */

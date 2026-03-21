@@ -21,10 +21,10 @@ function mapHome(home) {
   return {
     displayName: home.displayName,
     description: home.description,
+    githubHandle: home.githubHandle,
     twitterHandle: home.twitterHandle,
-    instagramHandle: home.instagramHandle,
     linkedInHandle: home.linkedInHandle,
-    githubHandle: home.githubHandle
+    instagramHandle: home.instagramHandle,
   }
 }
 

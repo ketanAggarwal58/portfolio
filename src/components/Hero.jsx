@@ -20,10 +20,10 @@ export default async function Hero() {
       <div className="mt-4 flex items-center justify-center gap-4 text-brand.subtle text-sm">
         <span>Follow me</span>
         <div className="flex gap-3">
-          <Link href={home.instagramHandle} className="hover:text-brand.accent"><Instagram size={20} /></Link>
-          <Link href={home.twitterHandle} className="hover:text-brand.accent"><Twitter size={20} /></Link>
-          <Link href={home.linkedInHandle} className="hover:text-brand.accent"><Linkedin size={20} /></Link>
-          <Link href={home.githubHandle} className="hover:text-brand.accent"><Github size={20} /></Link>
+          <Link target="_blank" href={home.instagramHandle} className="hover:text-brand.accent"><Instagram size={20} /></Link>
+          <Link target="_blank" href={home.twitterHandle} className="hover:text-brand.accent"><Twitter size={20} /></Link>
+          <Link target="_blank" href={home.linkedInHandle} className="hover:text-brand.accent"><Linkedin size={20} /></Link>
+          <Link target="_blank" href={home.githubHandle} className="hover:text-brand.accent"><Github size={20} /></Link>
         </div>
       </div>
     </section>

@@ -36,7 +36,7 @@ export default function AboutPage() {
           {/* Professional Summary */}
           <section className="space-y-4 text-lg leading-relaxed">
             <p>
-              I’m a backend-focused software developer with nearly three years of
+              I’m a backend-focused full stack software engineer with nearly three years of
               hands-on industry experience in building scalable, cloud-hosted
               systems. My expertise lies in{" "}
               <span className="font-semibold">Java Spring Boot</span>, with
